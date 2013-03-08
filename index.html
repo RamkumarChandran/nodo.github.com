@@ -88,10 +88,9 @@
 
           var assets = ['images/penguin_crop_1.png',
                         'images/penguin_crop_2.png']
-          var frames = []
-
+          frames = []
           var canvas = document.getElementById("canvas-friend");
-          var context = canvas.getContext("2d");
+          context = canvas.getContext("2d");
 
           for (var i=0; i<assets.length; i++) {
               frames[i] = new Image();
@@ -99,6 +98,29 @@
           }
           var j = 0;
           var k = 0;
+          var position = Math.floor((Math.random() * 4))
+          var $canvas = $("#canvas-friend");
+          var w = 135;
+          var h = 89;
+
+          if (position == 0) {
+              var t = canvas.width
+              canvas.width = canvas.height
+              canvas.height = t
+              context.translate(75, 0);
+              context.rotate(1.57);
+              $canvas.css({top: '1px', left: '1px'});
+          }
+          else if (position == 1) {
+              context.rotate(1.57 * 2);
+              context.translate(-120, -75);
+              $canvas.css({top: '1px', right: '1px'});
+          }
+          else if (position == 2) {
+              context.rotate(0.5);
+              context.translate(30, -20);
+              $canvas.css({bottom: '1px', left: '1px'});
+          }
 
           var animate = function() {
               if (k > 10) {
@@ -106,20 +128,20 @@
               }
 
               context.clearRect(0,0,canvas.width, canvas.height);
-              context.drawImage(frames[j], 0, 0, 135, 89);
+              context.drawImage(frames[j], 0, 0, w, h);
 
               k += 1;
               j += 1;
               j = (j % frames.length);
           };
 
-          setInterval(animate, 200);
+          setInterval(animate, 150);
 
-        $(function() {
-          $("#canvas-friend").click(function() {
-            k = 0;
+          $(function() {
+              $("#canvas-friend").click(function() {
+                  k = 0;
+              });
           });
-        });
 
       });
     </script>
