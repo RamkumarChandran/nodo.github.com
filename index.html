@@ -19,6 +19,7 @@
         position: fixed;
         bottom: 1px;
         right: 1px;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -101,7 +102,6 @@
 
           var animate = function() {
               if (k > 10) {
-                  console.log("hi");
                   return;
               }
 
@@ -114,6 +114,12 @@
           };
 
           setInterval(animate, 200);
+
+        $(function() {
+          $("#canvas-friend").click(function() {
+            k = 1;
+          });
+        });
 
       });
     </script>
